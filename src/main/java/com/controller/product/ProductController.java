@@ -19,6 +19,10 @@ public class ProductController {
         return productRepository.getProducts();
     }
 
+    @GetMapping("/more/{index}/{size}")
+    public List<Product> getProductsByIndex(@PathVariable("index") Integer index , @PathVariable("size") Integer size) {
+        return productRepository.getProductsByIndex(index , size);
+    }
 
     @PostMapping
     public Product saveProduct(Product product) {

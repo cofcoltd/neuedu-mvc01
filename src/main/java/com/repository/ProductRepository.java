@@ -23,11 +23,23 @@ public class ProductRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+
+    RowMapper<Product> rowMapper = new BeanPropertyRowMapper<>(Product.class);
+
+    @Transactional(readOnly = true)
+    public List<Product> getProductsByIndex(Integer index , Integer size) {
+
+        String sql = "select pid , pname , price , description , imgs  from product limit ? , ?  ";
+
+        return  jdbcTemplate.query(sql , new Object[]{ index , size} , rowMapper);
+    }
+
+
+
     @Transactional(readOnly = true)
     public List<Product> getProducts() {
         final String sql = "select pid , pname , price , description , imgs  from product";
 
-        RowMapper<Product> rowMapper = new BeanPropertyRowMapper<>(Product.class);
         return jdbcTemplate.query(sql, rowMapper);
     }
 

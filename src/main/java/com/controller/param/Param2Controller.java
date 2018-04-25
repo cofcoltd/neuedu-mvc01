@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Param2Controller {
 
     @RequestMapping("param")
-    public String getParam(@RequestParam("id") Integer id) {
+    public String getParam(@RequestParam("id") Integer id) { //request.getParameter("")
         return "id : " + id;
     }
 

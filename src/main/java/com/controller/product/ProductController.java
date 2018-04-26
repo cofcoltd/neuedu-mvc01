@@ -15,7 +15,8 @@ public class ProductController {
     ProductRepository productRepository;
 
     @GetMapping
-    public List<Product> getProducts() {
+    public List<Product> getProducts() throws Exception{
+        Thread.sleep(3000);
         return productRepository.getProducts();
     }
 

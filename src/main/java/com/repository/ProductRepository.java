@@ -23,8 +23,13 @@ public class ProductRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-
     RowMapper<Product> rowMapper = new BeanPropertyRowMapper<>(Product.class);
+
+    public int removeProductById(Integer pid) {
+        final String sql = "delete from product where pid = ?";
+        return jdbcTemplate.update(sql , pid);
+    }
+
 
     @Transactional(readOnly = true)
     public List<Product> getProductsByIndex(Integer index , Integer size) {

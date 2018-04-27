@@ -14,9 +14,14 @@ public class ProductController {
     @Autowired
     ProductRepository productRepository;
 
+    @DeleteMapping("/{pid}")
+    public int removeProductById(@PathVariable("pid") Integer pid) {
+        return productRepository.removeProductById(pid);
+    }
+
     @GetMapping
-    public List<Product> getProducts() throws Exception{
-        Thread.sleep(3000);
+    public List<Product> getProducts() {
+
         return productRepository.getProducts();
     }
 
